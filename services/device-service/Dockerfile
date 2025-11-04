@@ -1,5 +1,5 @@
 # Use multi-stage build for smaller image size
-FROM --platform=$BUILDPLATFORM python:3.11-slim AS builder
+FROM --platform=$BUILDPLATFORM python:3.14-slim AS builder
 
 ARG BUILDPLATFORM
 ARG TARGETPLATFORM
@@ -26,7 +26,7 @@ RUN poetry config virtualenvs.create false \
     && poetry install --no-dev --no-interaction --no-ansi
 
 # Final stage
-FROM --platform=$TARGETPLATFORM python:3.11-slim
+FROM --platform=$TARGETPLATFORM python:3.14-slim
 
 ARG TARGETPLATFORM
 ARG TARGETOS
